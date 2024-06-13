@@ -1,0 +1,86 @@
+.container {
+  @apply flex bg-black text-white;
+}
+
+.sidebar {
+  @apply flex flex-col items-center bg-black text-grey h-screen justify-between gap-10 ;
+  border-right: 1px solid theme('colors.shade.2')
+}
+
+.logo {
+  @apply my-5 cursor-pointer flex justify-start items-start w-full px-3;
+}
+
+.logo-img,
+.logo-img2 {
+  @apply object-contain object-center;
+}
+.logo-img{
+  @apply w-36 h-10;
+}
+.logo-img2{
+  @apply w-16 h-8
+}
+
+.nav {
+  @apply w-full flex-grow flex flex-col gap-3;
+}
+
+.navItem {
+  @apply flex items-center py-2 px-3 cursor-pointer transition-colors duration-300 ease-in-out text-base gap-5 font-normal justify-start;
+  border-radius: 10px;
+}
+
+.navItem:hover {
+  @apply bg-shade-1;
+} 
+
+.active {
+  @apply bg-shade-1;
+}
+
+.text {
+  @apply inline-block;
+}
+.icon{
+  svg{
+    @apply w-5;
+  }
+}
+.content {
+  @apply flex flex-col flex-grow pr-16 pl-6 py-5 bg-black text-grey gap-8;
+}
+
+.bottomNav {
+  @apply w-full mb-5;
+}
+
+.dashboardHead{
+  @apply flex justify-between items-center;
+}
+.dashboardRightHead{
+  @apply flex justify-between items-center w-2/5;
+  input{
+    border: none;
+  }
+  input:focus{
+    border: none !important;
+    outline: none !important;
+  }
+}
+.userDiv{
+  @apply flex gap-2 justify-start items-center;
+  img{
+    border-radius: 50%;
+  }
+  p{
+    @apply text-base font-semibold;
+  }
+  div small{
+    @apply text-xs;
+  }
+}
+.input{
+  @apply w-3/5 px-8 py-2 bg-shade-3;
+  border-radius: 8px;
+}
