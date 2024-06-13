@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Flex, Text, Icon } from '@chakra-ui/react';
-import { FaChurch, FaUsers, FaDollarSign, FaBell } from 'react-icons/fa'; // Example icons, adjust as necessary
+import { FaChurch, FaUsers, FaDollarSign, FaBell } from 'react-icons/fa'; 
 
 
 interface DataBoxProps {

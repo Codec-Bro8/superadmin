@@ -1,7 +1,6 @@
 import React from 'react';
 import { Box, Flex, Text } from '@chakra-ui/react';
 import { formatDistanceToNow, isBefore, subDays, subMonths, format } from 'date-fns';
-import styles from '@/styles/DataBox.module.scss';
 
 interface DataBoxProps {
   title: string;
@@ -50,7 +49,7 @@ const DonationDataBox: React.FC<DataBoxProps> = ({ title, data, increase, upload
           {title.includes('donor') ? '' : '$'}{data}
         </Text>
         <Text><Text as='span' color={increaseColor}>{increase > 0 ? '+' : ''}{increase}</Text> Than last month</Text>
-        <Text className={styles.label} as='small'>Updated {formattedUploadDate}</Text>
+        <Text as='small'>Updated {formattedUploadDate}</Text>
       </Flex>
     </Box>
   );
