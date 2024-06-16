@@ -25,7 +25,7 @@ const ChurchTab = () => {
                                     className='flex justify-between items-center'
                                 >
                                     <Link href={`/superadmin/churches/onboarded/${encodeURIComponent(church.name)}`} passHref>
-                                        <Box className='flex gap-4 justify-start items-start' as="a" cursor="pointer">
+                                        <Box className='flex gap-4 justify-start items-start' cursor="pointer">
                                             <Box w='48px' h='48px' borderRadius='50%' bg='white.2'></Box>
                                             <Box>
                                                 <Text fontWeight="bold">{church.name}</Text>
@@ -58,7 +58,7 @@ const ChurchTab = () => {
                                     p='1rem'
                                 >
                                     <Link href={`/superadmin/churches/newly-registered/${encodeURIComponent(church.name)}`} passHref>
-                                        <Box className='flex gap-4 justify-start items-start' as="a" cursor="pointer">
+                                        <Box className='flex gap-4 justify-start items-start' cursor="pointer">
                                             <Box w='48px' h='48px' borderRadius='50%' bg='white.2'></Box>
                                             <Box>
                                                 <Text fontWeight="bold">{church.name}</Text>

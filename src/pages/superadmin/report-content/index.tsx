@@ -7,4 +7,9 @@ const ReportContent = () => {
   )
 }
 
+// Define layoutProps for this page
+ReportContent.layoutProps = {
+  title: "Report Content",
+};
+
 export default ReportContent

@@ -28,12 +28,12 @@ const AsideBar = () => {
             <Text as={'h3'} fontWeight='bold'>Demographies</Text>
             <Box className='flex justify-between items-center'>
                 <Text>Male</Text>
-                <Progress value={90} size='sm' w='50%' borderRadius='full' />
+                <Progress value={90} size='sm' w='50%' color='primary' borderRadius='full' />
                 <Text>{TotaldashboardData.totalMusic}</Text>
             </Box>
             <Box className='flex justify-between items-center'>
                 <Text>Female</Text>
-                <Progress value={90} size='sm' w='50%' borderRadius='full' />
+                <Progress value={90} size='sm' w='50%' borderRadius='full' color='primary' />
                 <Text>{TotaldashboardData.totalMusic}</Text>
             </Box>
         </Box>

@@ -6,4 +6,9 @@ const LogOut = () => {
   )
 }
 
-export default LogOut
+// Define layoutProps for this page
+LogOut.layoutProps = {
+  title: "Log out",
+};
+
+export default LogOut;

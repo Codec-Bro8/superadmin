@@ -2,6 +2,7 @@ import React from 'react';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, LineElement, PointElement, Title, Tooltip, Legend, ChartData, ChartOptions } from 'chart.js';
 import { lineGraphData } from '@/data/graphData';
+import { Box } from '@chakra-ui/react';
 
 ChartJS.register(CategoryScale, LinearScale, LineElement, PointElement, Title, Tooltip, Legend);
 
@@ -86,9 +87,9 @@ const LineChart = ({ title, data, styles }: ILineChartProps) => {
   };
 
   return (
-    <div>
+    <Box bgColor='shade.3' borderRadius='8px' p='2rem'>
       <Line data={data} options={options} />
-    </div>
+    </Box>
   );
 };
 

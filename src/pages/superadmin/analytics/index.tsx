@@ -8,4 +8,10 @@ const Analytics = () => {
   )
 }
 
+// Define layoutProps for this page
+Analytics.layoutProps = {
+  title: "Analytics",
+  searchBarProp: "Search anaytics ..",
+};
+
 export default Analytics

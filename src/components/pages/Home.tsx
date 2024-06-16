@@ -1,11 +1,12 @@
 import React from 'react';
 import DataBox from '../ui/databox/databox';
 import { Box , Grid} from '@chakra-ui/react';
-import { TotaldashboardData } from '@/data/dashboardData';
+import { donors, TotaldashboardData } from '@/data/dashboardData';
 import BarChart from '../ui/dashboard/barGraph';
 import { barGraphData, GraphicalStyle } from '@/data/graphData';
 import AsideBar from '../ui/dashboard/aside/aside';
 import ContentLayout from '../layouts/contentLayout';
+import TopLocationDonor from '../ui/dashboard/Locationdonor';
 
 const HomePage = () => {
   return (
@@ -22,6 +23,7 @@ const HomePage = () => {
           <Box bgColor='shade.3' borderRadius='10px' >
             <BarChart title='Donation Analytics' data={barGraphData} styles={GraphicalStyle}  />
           </Box>
+          <TopLocationDonor title='Top location views' donors={donors} />
         </Box>
         <Box w='30%' p='1.5rem'>
           <AsideBar />

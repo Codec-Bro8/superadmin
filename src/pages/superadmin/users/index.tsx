@@ -7,5 +7,10 @@ const Users = () => {
     <UserPage />
   )
 }
+// Define layoutProps for this page
+Users.layoutProps = {
+  title: "Users",
+  searchBarProp: "Search Users...",
+};
 
-export default Users
+export default Users;

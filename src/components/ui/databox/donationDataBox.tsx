@@ -12,6 +12,7 @@ interface DataBoxProps {
 const DonationDataBox: React.FC<DataBoxProps> = ({ title, data, increase, upload }) => {
   const uploadDate = new Date(upload);
   const now = new Date();
+  const formattedData = new Intl.NumberFormat().format(data);
 
   const getFormattedDate = (date: Date): string => {
     const oneDayAgo = subDays(now, 1);
@@ -46,7 +47,7 @@ const DonationDataBox: React.FC<DataBoxProps> = ({ title, data, increase, upload
       <Text color='white.2'>{title}</Text>
       <Flex justify='start' flexDirection="column" alignItems="start">
         <Text fontSize="5xl" fontWeight="500">
-          {title.includes('donor') ? '' : '$'}{data}
+          {title.includes('donor') ? '' : '$'}{formattedData}
         </Text>
         <Text><Text as='span' color={increaseColor}>{increase > 0 ? '+' : ''}{increase}</Text> Than last month</Text>
         <Text as='small'>Updated {formattedUploadDate}</Text>

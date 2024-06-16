@@ -8,4 +8,10 @@ const Churches = () => {
   )
 }
 
+// Define layoutProps for this page
+Churches.layoutProps = {
+  title: "Churches",
+  searchBarProp: "Search churches",
+};
+
 export default Churches

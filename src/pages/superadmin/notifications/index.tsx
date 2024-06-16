@@ -6,5 +6,10 @@ const Notifications = () => {
     <div>Notifications</div>
   )
 }
+// Define layoutProps for this page
+Notifications.layoutProps = {
+  title: "Notifications",
+  searchBarProp: "Search Notifications ...",
+};
 
 export default Notifications

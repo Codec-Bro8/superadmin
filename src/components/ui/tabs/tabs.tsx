@@ -27,7 +27,7 @@ const DashboardTab: React.FC<DashboardTabProps> = ({ tabsData }) => {
                 <TabPanels>
                     {tabsData.map((tab, index) => (
                         <TabPanel key={index}>
-                            <div>
+                            <div className='flex flex-col gap-8'>
                                 <div className='flex gap-6'>
                                     {tab.avgWatchTime && (
                                         <Stat>

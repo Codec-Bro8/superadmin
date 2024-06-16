@@ -120,36 +120,36 @@ const generateDummyData = (churches:any) => {
       churchName: church.name,
       videos: [
         {
-          coverImg: 'https://via.placeholder.com/150',
+          coverImg: '/video.png',
           title: `Video 1 for ${church.name}`,
           date: '2024-06-15',
         },
         {
-          coverImg: 'https://via.placeholder.com/150',
+          coverImg: '/video.png',
           title: `Video 2 for ${church.name}`,
           date: '2024-06-16',
         },
       ],
       music: [
         {
-          image: 'https://via.placeholder.com/150',
+          image: '/music.png',
           title: `Music 1 for ${church.name}`,
           singer: 'Sample Artist',
         },
         {
-          image: 'https://via.placeholder.com/150',
+          image: '/music.png',
           title: `Music 2 for ${church.name}`,
           singer: 'Another Artist',
         },
       ],
       blogs: [
         {
-          image: 'https://via.placeholder.com/150',
+          image: '/blog.png',
           title: `Blog 1 for ${church.name}`,
           date: '2024-06-15',
         },
         {
-          image: 'https://via.placeholder.com/150',
+          image: '/blog.png',
           title: `Blog 2 for ${church.name}`,
           date: '2024-06-16',
         },

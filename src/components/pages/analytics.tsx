@@ -5,6 +5,7 @@ import DashboardTab from "../ui/tabs/tabs"
 import { tabsData } from "@/data/tabData"
 import AsideBar from "../ui/dashboard/aside/aside"
 import ContentLayout from "../layouts/contentLayout"
+import AsideTwo from "../ui/dashboard/aside/aside2"
 
 const AnalyticsPage = () => {
   return (
@@ -27,7 +28,7 @@ const AnalyticsPage = () => {
             <DashboardTab tabsData={tabsData} />
           </Box>
           <Box w='30%'>
-            <AsideBar />
+            <AsideTwo />
           </Box>
         </Box>
       </Box>

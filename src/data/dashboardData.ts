@@ -26,3 +26,11 @@ export const TotaldashboardData = {
     },
     notifications: 75,
   };
+
+  export const donors = [
+    { country: 'Canada', score: 82 },
+    { country: 'Nigeria', score: 90 },
+    { country: 'Saudi Arabia', score: 85 },
+    { country: 'United States', score: 80 },
+    { country: 'United Kingdom', score: 73 },
+  ];
