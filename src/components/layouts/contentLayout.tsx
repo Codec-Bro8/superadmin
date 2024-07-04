@@ -14,6 +14,7 @@ const ContentLayout = ({children}:IContentLayoutProps) => {
         h='80vh'
         flexDirection='column'
         gap='1rem'
+        pr='3.5rem'
     >
         {children}
     </Box>

@@ -10,13 +10,59 @@
 }
 
 body{
-    font-family: "Poppins", sans-serif;
+    font-family: "Poppins", sans-serif !important;
     font-weight: 400;
     font-style: normal;
     @apply bg-black;
     height: 100vh;
+	color: white;
 }
+
 
 a{
     text-decoration: none;
+}
+select{
+	// padding: 2rem 1rem !important;
+	option{
+		background-color: #181818 !important;
+		color: white;
+	}
+}
+.chakra-modal__content-container{
+	align-items: center !important;
+}
+// Scrollbar styles
+
+/* width */
+::-webkit-scrollbar {
+	width: 5px;
+	margin-top: 5px;
+	height: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	@apply bg-shade-2;
+	border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	@apply bg-primary;
+	border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: #a06904;
+}
+::-webkit-scrollbar-track-piece:end {
+	background: transparent;
+	margin-bottom: 10px;
+}
+
+::-webkit-scrollbar-track-piece:start {
+	background: transparent;
+	margin-top: 10px;
 }

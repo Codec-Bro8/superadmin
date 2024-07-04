@@ -1,11 +1,20 @@
-import React from 'react';
+import React , {useState} from 'react';
 import { Box, Tabs, TabList, Tab, TabIndicator, TabPanels, TabPanel, Button, List, ListItem, Text, Popover, PopoverTrigger, PopoverContent } from '@chakra-ui/react';
 import Link from 'next/link';
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { MdDeleteOutline } from "react-icons/md";
 import { onboardedChurches, newlyRegisteredChurches } from '@/data/churchData';
-
+import DeleteModal from '../disclosure/deleteMdal';
 const ChurchTab = () => {
+    const [isModalOpen, setModalOpen] = useState(false);
+
+    const handleOpenModal = () => setModalOpen(true);
+    const handleCloseModal = () => setModalOpen(false);
+    const handleDelete = () => {
+        // Perform delete action
+        handleCloseModal();
+    };
+
     return (
         <Box>
             <Tabs position="relative" variant="unstyled">
@@ -39,9 +48,15 @@ const ChurchTab = () => {
                                             <Button bg='none' color='white.1' _hover={{ bg: 'none' }} ><BsThreeDotsVertical color='white.1' fontSize='24px' /></Button>
                                         </PopoverTrigger>
                                         <PopoverContent width='fit-content' bg='black.1'>
-                                            <Button bg='none' width='fit-content' color='white.1'><MdDeleteOutline /></Button>
+                                            <Button bg='none' width='fit-content' color='white.1' _hover={{bg: 'primary'}} onClick={handleOpenModal} ><MdDeleteOutline /></Button>
                                         </PopoverContent>
                                     </Popover>
+                                    <DeleteModal 
+                                        isOpen={isModalOpen} 
+                                        onClose={handleCloseModal} 
+                                        message="Are you sure you want to delete this account?" 
+                                        onDelete={handleDelete} 
+                                    />
                                 </ListItem>
                             ))}
                         </List>

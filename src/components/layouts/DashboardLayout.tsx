@@ -37,7 +37,7 @@ const DashboardLayout = ({ title, searchBarProp, children }: IDashboardLayoutPro
             </div>
           </div>
         </div>
-        <div >
+        <div className={styles.dashboardBody}>
           {children}
         </div>
       </div>

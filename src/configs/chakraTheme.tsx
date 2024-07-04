@@ -1,5 +1,6 @@
 import { extendTheme } from '@chakra-ui/react';
 
+
 const theme = extendTheme({
   colors: {
     primary: '#FFA500',
@@ -9,7 +10,8 @@ const theme = extendTheme({
     black: {
       1: '#0C0C0C',
       2: '#000',
-      3: '#848484'
+      3: '#848484',
+      4: '#444444'
     },
     shade: {
       1: '#242424',
@@ -25,8 +27,8 @@ const theme = extendTheme({
     grey: '#CBCBCB',
   },
   fonts: {
-    heading: `'Poppins', sans-serif`,
-    body: `'Poppins', sans-serif`,
+    heading: 'Poppins, sans-serif',
+    body: 'Poppins, sans-serif',
   },
   components:{
     Progress:{

@@ -1,10 +1,12 @@
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, Tabs, TabList, TabPanels, TabPanel, Text, Button } from '@chakra-ui/react';
 import { MdDeleteOutline } from 'react-icons/md';
 import CustomTab from '@/components/ui/tabs/customTab';
 import { onboardedChurchData } from '@/data/churchData';
 import ContentLayout from '@/components/layouts/contentLayout';
+import DeleteModal from '@/components/ui/disclosure/deleteMdal';
+import StyledSelect from '@/components/ui/input/select';
 
 interface RouterQuery {
   name?: string;
@@ -34,31 +36,42 @@ interface Devotional {
   preview: string;
 }
 
-
-
 const OnboardedChurchDetail: React.FC = () => {
   const router = useRouter();
   const { name } = router.query as RouterQuery;
 
   // Find the church data based on the name from query params
-  const churchData = onboardedChurchData.find(
-    (church:any) => church.churchName === name
-  );
+  const churchData = onboardedChurchData.find((church: any) => church.churchName === name);
 
   if (!churchData) {
     return <Box>Error: Church not found</Box>;
   }
 
+  const [modalState, setModalState] = useState({ isOpen: false, message: '', onDelete: () => {} });
+
+  const handleOpenModal = (message: string, onDelete: () => void) => {
+    setModalState({ isOpen: true, message, onDelete });
+  };
+
+  const handleCloseModal = () => setModalState({ isOpen: false, message: '', onDelete: () => {} });
+
   return (
     <ContentLayout>
       <Box>
-        <Tabs variant='soft-rounded' >
-          <TabList className='flex gap-5'>
-            <CustomTab>Videos</CustomTab>
-            <CustomTab>Music</CustomTab>
-            <CustomTab>Blogs</CustomTab>
-            <CustomTab>Devotionals</CustomTab>
-          </TabList>
+        <Tabs variant='soft-rounded'>
+          <Box className='flex justify-between items-center'>
+            <TabList className='flex gap-5'>
+              <CustomTab>Videos</CustomTab>
+              <CustomTab>Music</CustomTab>
+              <CustomTab>Blogs</CustomTab>
+              <CustomTab>Devotionals</CustomTab>
+            </TabList>
+            <StyledSelect placeholder='Sort by' w='10%'>
+              <option value='option1'>Option 1</option>
+              <option value='option2'>Option 2</option>
+              <option value='option3'>Option 3</option>
+            </StyledSelect>
+          </Box>
           <TabPanels>
             <TabPanel className='flex gap-3'>
               {churchData.videos.map((video: Video, index: number) => (
@@ -70,10 +83,22 @@ const OnboardedChurchDetail: React.FC = () => {
                   <Box>
                     <Text fontWeight='bold'>{video.title}</Text>
                     <Text>{name}</Text>
-                  <Box className='flex justify-between items-start'>
-                    <Text fontSize='x-small'>{video.date}</Text>
-                    <Button bg='none' width='fit-content' color='white.1'><MdDeleteOutline /></Button>
-                  </Box>
+                    <Box className='flex justify-between items-start'>
+                      <Text fontSize='x-small'>{video.date}</Text>
+                      <Button
+                        bg='none'
+                        width='fit-content'
+                        color='white.1'
+                        _hover={{ bg: 'primary' }}
+                        onClick={() => handleOpenModal('Are you sure you want to delete this video?', () => {
+                          // Perform delete action
+                          console.log('Video deleted');
+                          handleCloseModal();
+                        })}
+                      >
+                        <MdDeleteOutline />
+                      </Button>
+                    </Box>
                   </Box>
                 </Box>
               ))}
@@ -87,10 +112,22 @@ const OnboardedChurchDetail: React.FC = () => {
                   </Box>
                   <Box>
                     <Text fontWeight='bold'>{music.title}</Text>
-                  <Box className='flex justify-between items-start'>
-                    <Text fontSize='x-small'>{music.singer}</Text>
-                    <Button bg='none' width='fit-content' color='white.1'><MdDeleteOutline /></Button>
-                  </Box>
+                    <Box className='flex justify-between items-start'>
+                      <Text fontSize='x-small'>{music.singer}</Text>
+                      <Button
+                        bg='none'
+                        width='fit-content'
+                        color='white.1'
+                        _hover={{ bg: 'primary' }}
+                        onClick={() => handleOpenModal('Are you sure you want to delete this music?', () => {
+                          // Perform delete action
+                          console.log('Music deleted');
+                          handleCloseModal();
+                        })}
+                      >
+                        <MdDeleteOutline />
+                      </Button>
+                    </Box>
                   </Box>
                 </Box>
               ))}
@@ -105,7 +142,19 @@ const OnboardedChurchDetail: React.FC = () => {
                       <Text fontWeight='bold'>{blog.title}</Text>
                       <Box className='flex justify-between items-start'>
                         <Text fontSize='x-small'>{blog.date}</Text>
-                        <Button bg='none' width='fit-content' color='white.1'><MdDeleteOutline /></Button>
+                        <Button
+                          bg='none'
+                          width='fit-content'
+                          color='white.1'
+                          _hover={{ bg: 'primary' }}
+                          onClick={() => handleOpenModal('Are you sure you want to delete this blog?', () => {
+                            // Perform delete action
+                            console.log('Blog deleted');
+                            handleCloseModal();
+                          })}
+                        >
+                          <MdDeleteOutline />
+                        </Button>
                       </Box>
                     </Box>
                   </Box>
@@ -119,13 +168,31 @@ const OnboardedChurchDetail: React.FC = () => {
                   <Text fontSize='small'>{devotional.date}</Text>
                   <p>{devotional.preview}</p>
                   <Box className='flex justify-end'>
-                    <Button bg='none' width='fit-content' color='white.1'><MdDeleteOutline /></Button>
+                    <Button
+                      bg='none'
+                      width='fit-content'
+                      color='white.1'
+                      _hover={{ bg: 'primary' }}
+                      onClick={() => handleOpenModal('Are you sure you want to delete this devotional?', () => {
+                        // Perform delete action
+                        console.log('Devotional deleted');
+                        handleCloseModal();
+                      })}
+                    >
+                      <MdDeleteOutline />
+                    </Button>
                   </Box>
                 </Box>
               ))}
             </TabPanel>
           </TabPanels>
         </Tabs>
+        <DeleteModal
+          isOpen={modalState.isOpen}
+          onClose={handleCloseModal}
+          message={modalState.message}
+          onDelete={modalState.onDelete}
+        />
       </Box>
     </ContentLayout>
   );

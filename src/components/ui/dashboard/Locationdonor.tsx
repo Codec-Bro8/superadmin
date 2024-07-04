@@ -21,7 +21,7 @@ const TopLocationDonor: React.FC<TopLocationDonorProps> = ({ title, donors }) =>
             {donors.map((donor, index) => (
             <Flex key={index} justify='space-between' align='center'>
                 <Text>{donor.country}</Text>
-                <CircularProgress value={donor.score} color='primary' size='50px'>
+                <CircularProgress value={donor.score} color='primary' size='40px'>
                 <CircularProgressLabel>{donor.score}</CircularProgressLabel>
                 </CircularProgress>
             </Flex>

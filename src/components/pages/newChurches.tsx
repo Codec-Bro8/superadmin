@@ -4,6 +4,7 @@ import { Box, Button, Text } from '@chakra-ui/react';
 import { newlyRegisteredChurches } from '@/data/churchData';
 import EditableBox from '@/components/ui/Editable';
 import ContentLayout from '@/components/layouts/contentLayout';
+import Image from 'next/image';
 
 const NewlyRegisteredChurchDetail = () => {
   const router = useRouter();
@@ -46,6 +47,11 @@ const NewlyRegisteredChurchDetail = () => {
         <Box bg='shade.3' p='3rem' borderRadius='10px' display='flex' flexDir='column' gap='3rem'>
           <Text fontSize="2xl" fontWeight="bold">Information for {church.name}</Text>
           <Box>
+            <Box position="relative" w='40%' p='8rem' h='100%'>
+              <Image src='/church.png' alt='Logo' layout='fill' objectFit='contain' />
+            </Box>
+          </Box>
+          <Box>
             <Text fontSize="xl" fontWeight="bold">Description</Text>
             <EditableBox defaultValue={church.description} />
           </Box>
@@ -81,6 +87,9 @@ const NewlyRegisteredChurchDetail = () => {
         </Box>
         <Box bg='shade.3' p='3rem' borderRadius='10px' display='flex' flexDir='column' gap='3rem'>
           <Text fontSize="2xl" fontWeight="bold">Registration Document:</Text>
+          <Box position="relative" w='10%' p='4rem' h='100%' className='flex justify-start'>
+              <Image src='/doc.png' alt='Logo' layout='fill' objectFit='contain' />
+            </Box>
           <Box>
             <Button colorScheme="blue" mr={2} as="a" href={church.registrationDocument} target="_blank">View</Button>
             <Button colorScheme="green" as="a" href={church.registrationDocument} download>Download</Button>
