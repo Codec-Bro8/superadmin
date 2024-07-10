@@ -12,24 +12,11 @@ import { fetchApiData } from "../../service/request";
 const ChurchesPage = () => {
   const { church, setChurch } = useApiStore();
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const responseData = await fetchApiData("/user/getChurches");
-  //     console.log("Response Data:", responseData);
-  //     // setChurch(church);
-  //   };
-
-  //   fetchData();
-  // }, []);
-
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const responseData = await fetchApiData("/user/getChurches");
-        console.log("Response Data:", responseData);
-      } catch (error) {
-        console.error("Error fetching churches:", error);
-      }
+      const responseData = await fetchApiData("/user/getChurches");
+      console.log("Response Data:", responseData);
+      // setChurch(church);
     };
 
     fetchData();

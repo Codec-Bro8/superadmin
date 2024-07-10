@@ -10,21 +10,31 @@ import { useApiStore } from "@/store/zusatndStore";
 
 const SignUp = () => {
   const router = useRouter();
-  const { fullName, email, password, setFullName, setEmail, setPassword } =
-    useApiStore();
+  const {
+    fullName,
+    email,
+    password,
+    role,
+    setRole,
+    setFullName,
+    setEmail,
+    setPassword,
+  } = useApiStore();
 
-  // const handleLogin = async (e: any) => {
-  //   // router.push('/superadmin/home');
+  const handleLogin = async (e: any) => {
+    // router.push('/superadmin/home');
 
-  //   e.preventDefault();
-  //   try {
-  //     const responseData = await postApiData(,"/auth");
-  //     console.log("Response Data:", responseData);
-  //   } catch (error) {
-  //     console.error("Error fetching churches:", error);
-  //   }
-  // };
-
+    e.preventDefault();
+    try {
+      const responseData = await postApiData(
+        { fullName, email, password },
+        "/auth"
+      );
+      console.log("Response Data:", responseData);
+    } catch (error) {
+      console.error("Error fetching churches:", error);
+    }
+  };
   return (
     <AuthLayout text="Welcome to the Super Admin Account Creation page. Please fill in the required details to create your super admin account.">
       <Box className="flex flex-col gap-7 w-1/3">
@@ -46,7 +56,7 @@ const SignUp = () => {
           value={password}
           set={setPassword}
         />
-        <StyledSelect placeholder="Role" />
+        {/* <StyledSelect placeholder="Role" value={role} set={setRole} /> */}
         {/* <AuthBtn onClick={() => handleLogin}>Sign up</AuthBtn> */}
       </Box>
     </AuthLayout>

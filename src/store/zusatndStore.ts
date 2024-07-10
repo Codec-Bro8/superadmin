@@ -8,7 +8,21 @@ interface Church {
   profilePicture: string | null;
   totalStreams: number;
   totalLikes: number;
-  totalSuscribers: number;
+  totalSubscribers: number;
+}
+
+interface NewlyRegistered {
+  id: number;
+  address: string;
+  province: string;
+  churchName: string;
+  description: string;
+  email: string;
+  city: string;
+  logo: null | string;
+  doc: string | undefined;
+  county: null;
+  zipCode: number;
 }
 
 interface State {
@@ -19,20 +33,24 @@ interface State {
   email: string;
   setEmail: (email: string) => void;
   password: string;
-  setPassword: (Password: string) => void;
+  setPassword: (password: string) => void;
   role: string | null;
   setRole: (role: string) => void;
+  newlyRegistered: NewlyRegistered[];
+  setNewlyRegistered: (newlyRegistered: NewlyRegistered[]) => void;
 }
 
 export const useApiStore = create<State>((set) => ({
   church: [],
   setChurch: (church) => set({ church }),
   fullName: "",
-  setFullName: (e: any) => set(e.target.value),
+  setFullName: (fullName) => set({ fullName }),
   email: "",
-  setEmail: (e: any) => set(e.target.value),
+  setEmail: (email) => set({ email }),
   password: "",
-  setPassword: (e: any) => set(e.target.value),
+  setPassword: (password) => set({ password }),
   role: null,
   setRole: (role) => set({ role }),
+  newlyRegistered: [],
+  setNewlyRegistered: (newlyRegistered) => set({ newlyRegistered }),
 }));

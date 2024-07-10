@@ -3,7 +3,9 @@ import React from "react";
 
 interface IstyledInput extends InputProps {
   value: string;
-  set: (e: any) => void;
+  set: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  type: string;
+  placeholder: string;
 }
 
 const StyledInput = ({ placeholder, type, value, set }: IstyledInput) => {
