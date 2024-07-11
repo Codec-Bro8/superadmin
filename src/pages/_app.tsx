@@ -6,6 +6,9 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { NextPageWithLayoutProps } from "@/types/type";
 import theme from "@/configs/chakraTheme";
 import ProtectedRoute from "./protectedRoute";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayoutProps;
@@ -21,11 +24,13 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
 
     return (
       <ChakraProvider theme={theme}>
-        <ProtectedRoute>
-          <DashboardLayout {...layoutProps}>
-            <Component {...pageProps} />
-          </DashboardLayout>
-        </ProtectedRoute>
+        <QueryClientProvider client={queryClient}>
+          <ProtectedRoute>
+            <DashboardLayout {...layoutProps}>
+              <Component {...pageProps} />
+            </DashboardLayout>
+          </ProtectedRoute>
+        </QueryClientProvider>
       </ChakraProvider>
     );
   }

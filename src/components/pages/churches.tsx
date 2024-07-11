@@ -1,32 +1,39 @@
-import React from "react";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
+
 import { useApiStore } from "../../store/zusatndStore";
 import DataBox from "../ui/databox/databox";
 import { Box, Grid } from "@chakra-ui/react";
 import { TotaldashboardData } from "@/data/dashboardData";
 import ChurchTab from "../ui/tabs/churchtab";
 import ContentLayout from "../layouts/contentLayout";
-
-import { fetchApiData } from "../../service/request";
+import { useQuery } from "@tanstack/react-query";
+import { fetchData } from "@/service/calls";
 
 const ChurchesPage = () => {
   const { church, setChurch } = useApiStore();
+  // const { data, error, isLoading } = useQuery({
+  //   queryKey: ["church"],
+  //   queryFn: fetchData,
+  //   // enabled: hasToken,
+  //   staleTime: 60 * 5 * 1000,
+  // });
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const responseData = await fetchApiData("/user/getChurches");
-      console.log("Response Data:", responseData);
-      // setChurch(church);
-    };
+  // useEffect(() => {
+  //   if (data) {
+  //     setChurch(data);
+  //   }
+  // }, [data, setChurch]);
 
-    fetchData();
-  }, []);
+  // console.log(data);
 
+  // // if (!isMounted || isLoading) {
+  // //   return null; // or a loading spinner
+  // // }
   return (
     <ContentLayout>
       <Box w="50%">
         <Grid templateColumns="repeat(auto-fit, minmax(200px, 1fr))" gap={6}>
-          <DataBox type="Total church" data={TotaldashboardData.totalChurch} />
+          <DataBox type="Total church" data={church.length} />
           <DataBox
             type="active churches"
             data={TotaldashboardData.activeChurch}

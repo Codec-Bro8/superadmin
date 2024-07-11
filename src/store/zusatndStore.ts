@@ -11,6 +11,99 @@ interface Church {
   totalSubscribers: number;
 }
 
+interface ChurchVideos {
+  live: boolean;
+  seriesId: number | null;
+  visibility: string;
+  description: string;
+  thumbnail: string | null;
+  videoUrl: string | null;
+  streamId: string;
+  streamIdExt: string;
+  churchName: string;
+  tags: string;
+  logo: string | null;
+  callId: string;
+  comment: boolean;
+  liveNow: boolean;
+  title: string;
+  date: string;
+}
+
+interface Videos {
+  id: number;
+  title: string;
+  description: string;
+  callId: string;
+  visibility: string;
+  tags: string;
+  comment: boolean;
+  time: string;
+  live: boolean;
+  // videoUrl: null;
+  // thumbnail: null;
+  // series: null;
+}
+
+interface Audio {
+  id: number;
+  type: string;
+  audioUrl: string;
+  imageUrl: string;
+  title: string;
+  artiste: string;
+  featuring: string | null;
+  visibility: string;
+  date: string;
+  listens: number;
+  // album: null;
+}
+
+interface Blog {
+  id: number;
+  header: string;
+  image: string;
+  link: string | null;
+  content: string;
+  totalLikes: number;
+  totalComments: number;
+  comment: string[];
+  church: Church;
+  // church: {
+  //   id: 3;
+  //   description: "bible believing church";
+  //   churchName: "qadfhhgseefQWDDGTF";
+  //   website: "www.church.com";
+  //   address: "church street";
+  //   province: "heaven";
+  //   city: "city of david";
+  //   country: "NG";
+  //   zip: "070033";
+  //   logo: "qadfhhgseefQWDDGTF";
+  //   doc: null;
+  // };
+}
+
+interface Devotion {
+  header: string;
+  content: string;
+  time: string;
+  church: Church;
+  // church: {
+  //   id: 3;
+  //   description: "bible believing church";
+  //   churchName: "qadfhhgseefQWDDGTF";
+  //   website: "www.church.com";
+  //   address: "church street";
+  //   province: "heaven";
+  //   city: "city of david";
+  //   country: "NG";
+  //   zip: "070033";
+  //   logo: "qadfhhgseefQWDDGTF";
+  //   doc: null;
+  // };
+}
+
 interface NewlyRegistered {
   id: number;
   address: string;
@@ -38,6 +131,16 @@ interface State {
   setRole: (role: string) => void;
   newlyRegistered: NewlyRegistered[];
   setNewlyRegistered: (newlyRegistered: NewlyRegistered[]) => void;
+  videos: Videos[];
+  setVideos: (videos: Videos[]) => void;
+  churchVideos: ChurchVideos[];
+  setChurchVideos: (churchVideos: ChurchVideos[]) => void;
+  audios: Audio[];
+  setAudios: (audios: Audio[]) => void;
+  blogs: Blog[];
+  setBlogs: (blog: Blog[]) => void;
+  devotion: Devotion[];
+  setDevotion: (devotion: Devotion[]) => void;
 }
 
 export const useApiStore = create<State>((set) => ({
@@ -53,4 +156,14 @@ export const useApiStore = create<State>((set) => ({
   setRole: (role) => set({ role }),
   newlyRegistered: [],
   setNewlyRegistered: (newlyRegistered) => set({ newlyRegistered }),
+  videos: [],
+  setVideos: (videos) => set({ videos }),
+  churchVideos: [],
+  setChurchVideos: (churchVideos) => set({ churchVideos }),
+  audios: [],
+  setAudios: (audios) => set({ audios }),
+  blogs: [],
+  setBlogs: (blogs) => set({ blogs }),
+  devotion: [],
+  setDevotion: (devotion) => set({ devotion }),
 }));

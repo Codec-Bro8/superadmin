@@ -1,10 +1,8 @@
-import { NextPageWithLayoutProps } from '@/types/type';
-import HomePage from '@/components/pages/Home';
+import { NextPageWithLayoutProps } from "@/types/type";
+import HomePage from "@/components/pages/Home";
 
 const Home: NextPageWithLayoutProps = () => {
-  return (
-    <HomePage />
-  );
+  return <HomePage />;
 };
 
 // Define layoutProps for this page

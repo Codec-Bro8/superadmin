@@ -1,5 +1,14 @@
 // components/ProtectedRoute.tsx
 import React, { ReactNode, useEffect, useState } from "react";
+import { useQueries } from "@tanstack/react-query";
+import {
+  fetchAudio,
+  fetchData,
+  fetchVideos,
+  fetchBlog,
+  fetchDevotional,
+} from "@/service/calls";
+import { useApiStore } from "@/store/zusatndStore";
 import { useRouter } from "next/router";
 
 interface ProtectedRouteProps {
@@ -22,8 +31,66 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
     }
   }, [router]);
 
-  if (!isMounted) {
-    return null;
+  const { setChurch, setVideos, setAudios, setBlogs, setDevotion } =
+    useApiStore();
+
+  const results = useQueries({
+    queries: [
+      {
+        queryKey: ["church"],
+        queryFn: fetchData,
+        enabled: hasToken,
+      },
+      {
+        queryKey: ["videos"],
+        queryFn: fetchVideos,
+        enabled: hasToken,
+      },
+      {
+        queryKey: ["audios"],
+        queryFn: fetchAudio,
+        enabled: hasToken,
+      },
+      {
+        queryKey: ["blogs"],
+        queryFn: fetchBlog,
+        enabled: hasToken,
+      },
+      {
+        queryKey: ["devotionals"],
+        queryFn: fetchDevotional,
+        enabled: hasToken,
+      },
+    ],
+  });
+
+  const [churchData, videoData, audioData, blogData, devotionalData] = results;
+
+  useEffect(() => {
+    if (churchData.data) setChurch(churchData.data);
+    if (videoData.data) setVideos(videoData.data);
+    if (audioData.data) setAudios(audioData.data);
+    if (blogData.data) setBlogs(blogData.data);
+    if (devotionalData.data) setDevotion(devotionalData.data);
+  }, [
+    churchData.data,
+    videoData.data,
+    audioData.data,
+    blogData.data,
+    devotionalData.data,
+    setChurch,
+    setVideos,
+    setAudios,
+    setBlogs,
+    setDevotion,
+  ]);
+
+  if (!isMounted || results.some((result) => result.isLoading)) {
+    return <div>Loading...</div>;
+  }
+
+  if (results.some((result) => result.error)) {
+    return <div>Error loading data</div>;
   }
 
   return <>{hasToken ? children : null}</>;

@@ -29,7 +29,7 @@ import { fetchApiData } from "@/service/request";
 // -------------------------------------------------------------
 
 const ChurchTab = () => {
-  const { newlyRegistered, setNewlyRegistered } = useApiStore();
+  const { newlyRegistered, setNewlyRegistered, church } = useApiStore();
   const [isModalOpen, setModalOpen] = useState(false);
 
   const handleOpenModal = () => setModalOpen(true);
@@ -54,9 +54,6 @@ const ChurchTab = () => {
     singleChurchData();
   }, [setNewlyRegistered]);
 
-  useEffect(() => {
-    console.log("Newly Registered Data:", newlyRegistered);
-  }, [newlyRegistered]);
   return (
     <Box>
       <Tabs position="relative" variant="unstyled">
@@ -74,9 +71,9 @@ const ChurchTab = () => {
         <TabPanels pt="1rem">
           <TabPanel>
             <List spacing={3}>
-              {onboardedChurches.map((church) => (
+              {church.map((church) => (
                 <ListItem
-                  key={church.id}
+                  key={church.churchId}
                   borderRadius="10px"
                   bg="shade.3"
                   p="1rem"
@@ -84,7 +81,7 @@ const ChurchTab = () => {
                 >
                   <Link
                     href={`/superadmin/churches/onboarded/${encodeURIComponent(
-                      church.name
+                      church.churchName
                     )}`}
                     passHref
                   >
@@ -99,9 +96,10 @@ const ChurchTab = () => {
                         bg="white.2"
                       ></Box>
                       <Box>
-                        <Text fontWeight="bold">{church.name}</Text>
-                        <Text>Manager: {church.manager}</Text>
-                        <Text>{church.followers} followers</Text>
+                        <Text fontWeight="bold">{church.churchName}</Text>
+                        {/* <Text>Manager: {church.manager}</Text> */}
+                        {/* <Text>{church.followers} followers</Text> */}
+                        <Text>{church.totalSubscribers} followers</Text>
                       </Box>
                     </Box>
                   </Link>
