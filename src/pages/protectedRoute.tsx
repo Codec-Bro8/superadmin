@@ -7,6 +7,7 @@ import {
   fetchVideos,
   fetchBlog,
   fetchDevotional,
+  fetchChurchVideos,
 } from "@/service/calls";
 import { useApiStore } from "@/store/zusatndStore";
 import { useRouter } from "next/router";
@@ -31,8 +32,14 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
     }
   }, [router]);
 
-  const { setChurch, setVideos, setAudios, setBlogs, setDevotion } =
-    useApiStore();
+  const {
+    setChurch,
+    setVideos,
+    setAudios,
+    setBlogs,
+    setDevotion,
+    setChurchVideos,
+  } = useApiStore();
 
   const results = useQueries({
     queries: [
@@ -61,10 +68,22 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
         queryFn: fetchDevotional,
         enabled: hasToken,
       },
+      {
+        queryKey: ["churchVideos"],
+        queryFn: fetchChurchVideos,
+        enabled: hasToken,
+      },
     ],
   });
 
-  const [churchData, videoData, audioData, blogData, devotionalData] = results;
+  const [
+    churchData,
+    videoData,
+    audioData,
+    blogData,
+    devotionalData,
+    churchVideosData,
+  ] = results;
 
   useEffect(() => {
     if (churchData.data) setChurch(churchData.data);
@@ -72,17 +91,20 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
     if (audioData.data) setAudios(audioData.data);
     if (blogData.data) setBlogs(blogData.data);
     if (devotionalData.data) setDevotion(devotionalData.data);
+    if (churchVideosData.data) setChurchVideos(churchVideosData.data);
   }, [
     churchData.data,
     videoData.data,
     audioData.data,
     blogData.data,
     devotionalData.data,
+    churchVideosData.data,
     setChurch,
     setVideos,
     setAudios,
     setBlogs,
     setDevotion,
+    setChurchVideos,
   ]);
 
   if (!isMounted || results.some((result) => result.isLoading)) {
