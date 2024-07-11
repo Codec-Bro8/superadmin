@@ -10,7 +10,7 @@ import TopLocationDonor from "../ui/dashboard/Locationdonor";
 import { useApiStore } from "@/store/zusatndStore";
 
 const HomePage = () => {
-  const { church } = useApiStore();
+  const { church, users } = useApiStore();
 
   return (
     <ContentLayout>
@@ -21,14 +21,8 @@ const HomePage = () => {
               templateColumns="repeat(auto-fit, minmax(200px, 1fr))"
               gap={6}
             >
-              <DataBox
-                type="Total church"
-                data={TotaldashboardData.totalChurch}
-              />
-              <DataBox
-                type="Total users"
-                data={TotaldashboardData.totalUsers}
-              />
+              <DataBox type="Total church" data={church.length} />
+              <DataBox type="Total users" data={users.length} />
               <DataBox
                 type="active users"
                 data={TotaldashboardData.activeUsers}

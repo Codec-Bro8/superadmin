@@ -30,6 +30,11 @@ const fetchDevotional = async () => {
   return responseData.data;
 };
 
+const fetchUsers = async () => {
+  const responseData = await fetchApiData("/user/getChurchByUser/34");
+  return responseData.data;
+};
+
 export {
   fetchAudio,
   fetchBlog,
@@ -37,4 +42,5 @@ export {
   fetchDevotional,
   fetchVideos,
   fetchData,
+  fetchUsers,
 };

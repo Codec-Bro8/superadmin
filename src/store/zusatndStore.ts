@@ -2,6 +2,16 @@
 
 import { create } from "zustand";
 
+interface Users {
+  churchName: string;
+  churchId: number;
+  profilePicture: string | null;
+  description: string;
+  totalPost: number;
+  totalSubscribers: number;
+  following: boolean;
+}
+
 interface Church {
   churchName: string;
   churchId: number;
@@ -119,6 +129,8 @@ interface NewlyRegistered {
 }
 
 interface State {
+  users: Users[];
+  setUsers: (users: Users[]) => void;
   church: Church[];
   setChurch: (church: Church[]) => void;
   fullName: string;
@@ -144,6 +156,8 @@ interface State {
 }
 
 export const useApiStore = create<State>((set) => ({
+  users: [],
+  setUsers: (users) => set({ users }),
   church: [],
   setChurch: (church) => set({ church }),
   fullName: "",
